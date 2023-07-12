@@ -27,7 +27,7 @@
 					<td th:text="${user.nome}">NOME</td>
 					<td th:text="${user.cognome}">COGNOME</td>
 					<td th:text="${user.email}">EMAIL</td>
-					<td><span th:if = "${user.percorso != null}" th:text="${user.percorso}">PERCORSO</span>
+					<td><span th:if = "${user.percorso != null}" th:text="${user.percorso.nome}">PERCORSO SCELTO</span>
 					<span th:unless = "${user.percorso != null}">Non ha scelto un percorso</span>
 					</td>
 				</tr>

@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import it.uniroma3.siw.spring.model.Cane;
+import it.uniroma3.siw.spring.model.Credentials;
+import it.uniroma3.siw.spring.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +31,7 @@ public class PercorsoService {
 	}
 
 
-	public Percorso findById(Long id) {
+	public Percorso findPercorsoById(Long id) {
 		return percorsoRepository.findById(id).get();
 	}
 
@@ -52,10 +55,24 @@ public class PercorsoService {
 		return percorsoRepository.existsByNome(percorso.getNome());
 	}
 
-
-	public void deleteById(Long id) {
-		percorsoRepository.deleteById(id);
+	@Transactional
+	public Percorso updatePercorso(Percorso oldPercorso, Percorso newPercorso) {
+		oldPercorso.setDescrizione(newPercorso.getDescrizione());
+		return this.percorsoRepository.save(oldPercorso);
 	}
+//	@Transactional
+//	public void deletePercorso(Long id) {
+//		Percorso percorso = this.findPercorsoById(id);
+//		List<Cane> cani = percorso.getCani();
+//		for (Cane c : cani) {
+//			c.setPercorso(null);
+//		}
+//		List<User> users = percorso.getUsers();
+//		for (User u : users) {
+//			u.setPercorso(null);
+//		}
+//		percorsoRepository.deleteById(id);
+//	}
 	
 	
 	

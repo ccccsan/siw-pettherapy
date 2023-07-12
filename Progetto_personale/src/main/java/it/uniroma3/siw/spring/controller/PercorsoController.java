@@ -59,7 +59,7 @@ public class PercorsoController {
 
 	@GetMapping("/percorso/{id}")
 	public String getPercorso(@PathVariable("id") Long id, Model model) {
-		Percorso percorso = percorsoService.findById(id);
+		Percorso percorso = percorsoService.findPercorsoById(id);
 		model.addAttribute("percorso", percorso);
 
 		return "percorso.html";
@@ -75,18 +75,17 @@ public class PercorsoController {
 		return "elencoPercorsi.html";
 	}
 
-	// se clicco su cancella mi porta alla pagina di conferma
+	// se clicco su modifica mi porta alla pagina di modificare
 	@GetMapping("/admin/toDeletePercorso/{id}")
 	public String toDeletePercorso(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("percorso", percorsoService.findById(id));
-
+		model.addAttribute("percorso", percorsoService.findPercorsoById(id));
 		return "toDeletePercorso.html";
 	}
 
 	// confermo la cancellazione
 	@GetMapping("/admin/deletePercorso/{id}")
 	public String deletePercorso(@PathVariable("id") Long id, Model model) {
-		percorsoService.deleteById(id);
+//		percorsoService.deletePercorso(id);
 		model.addAttribute("elencoPercorsi", percorsoService.findAll());
 		model.addAttribute("loggedCredential", sessionDataUser.getLoggedCredentials());
 

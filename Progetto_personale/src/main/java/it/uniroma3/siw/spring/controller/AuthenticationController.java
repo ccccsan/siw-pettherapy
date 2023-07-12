@@ -1,6 +1,8 @@
 package it.uniroma3.siw.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -51,11 +53,16 @@ public class AuthenticationController {
 
 	@RequestMapping(value = "/default", method = RequestMethod.GET)
 	public String defaultAfterLogin(Model model) {
-
-		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-		if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-			return "admin/home.html";
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication instanceof AnonymousAuthenticationToken) {
+			return "home.html";
+		}
+		else {
+			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+			if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+				return "admin/home.html";
+			}
 		}
 		return "home.html";
 	}

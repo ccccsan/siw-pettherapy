@@ -34,9 +34,6 @@ public class Credentials {
 	private User user;
 	
 	
-	
-	
-	
 	/*SETTER & GETTER*/
 	public void setId(Long id) {
 		this.id = id;

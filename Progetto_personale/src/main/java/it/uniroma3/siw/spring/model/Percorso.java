@@ -1,5 +1,6 @@
 package it.uniroma3.siw.spring.model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -30,6 +31,11 @@ public class Percorso {
 	// un percorso può essere scelto da più utenti
 	@OneToMany(mappedBy = "percorso", cascade = CascadeType.REMOVE)
 	private List<User> users;
+
+	public Percorso() {
+		this.users = new LinkedList<>();
+		this.cani = new LinkedList<>();
+	}
 
 	/* SETTER & GETTERS */
 	public Long getId() {
@@ -70,10 +76,6 @@ public class Percorso {
 
 	public void setUsers(List<User> users) {
 		this.users = users;
-	}
-
-	public String toString() {
-		return this.getNome();
 	}
 
 }

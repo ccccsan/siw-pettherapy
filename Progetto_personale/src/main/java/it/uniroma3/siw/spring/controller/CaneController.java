@@ -21,7 +21,6 @@ import it.uniroma3.siw.spring.controller.validator.CaneValidator;
 import it.uniroma3.siw.spring.model.Cane;
 import it.uniroma3.siw.spring.model.Operatore;
 import it.uniroma3.siw.spring.service.CaneService;
-import it.uniroma3.siw.spring.service.CredentialsService;
 import it.uniroma3.siw.spring.service.OperatoreService;
 import it.uniroma3.siw.spring.service.PercorsoService;
 import it.uniroma3.siw.spring.session.SessionDataUser;
@@ -72,7 +71,7 @@ public class CaneController {
 			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 
 			model.addAttribute("cane", cane);
-			model.addAttribute("elencoCani", caneService.findAll());
+			model.addAttribute("elencoCani", caneService.getAllCani());
 			model.addAttribute("elencoPercorsi", percorsoService.findAll());
 			model.addAttribute("loggedCredential", sessionDataUser.getLoggedCredentials());
 
@@ -100,7 +99,7 @@ public class CaneController {
 	//elenco dei cani senza id operatore
 	@GetMapping("/elencoCani") 
 	public String getElencoCani(Model model) {
-		List<Cane> elencoCani = caneService.findAll();
+		List<Cane> elencoCani = caneService.getAllCani();
 		model.addAttribute("elencoCani", elencoCani);
 		model.addAttribute("loggedCredential", sessionDataUser.getLoggedCredentials());
 
@@ -131,7 +130,7 @@ public class CaneController {
 		cane.setOperatore(operatore);
 
 		model.addAttribute("cane", cane);
-		model.addAttribute("elencoCani", caneService.findAll());
+		model.addAttribute("elencoCani", caneService.getAllCani());
 		model.addAttribute("elencoPercorsi", percorsoService.findAll());
 
 
@@ -165,7 +164,7 @@ public class CaneController {
 	@GetMapping("/admin/deleteCane/{id}")
 	public String deleteCane(@PathVariable("id") Long id, Model model) {
 		caneService.deleteById(id);
-		model.addAttribute("elencoCani", caneService.findAll());
+		model.addAttribute("elencoCani", caneService.getAllCani());
 		model.addAttribute("loggedCredential", sessionDataUser.getLoggedCredentials());
 
 

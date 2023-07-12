@@ -39,7 +39,7 @@ public class UserController {
 	public String addUser(@RequestParam Long percorsoid, Model model) {
 		
 			User user = sessionDataUser.getLoggedCredentials().getUser();
-			Percorso percorso = percorsoService.findById(percorsoid);
+			Percorso percorso = percorsoService.findPercorsoById(percorsoid);
 			user.setPercorso(percorso);
 			
 			userService.saveUser(user);
