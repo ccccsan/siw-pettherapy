@@ -1,4 +1,4 @@
-# siw-pettherapy
+# SIW - Pet Therapy
 
 Progetto personale per il corso di Sistemi Informativi su Web.
 
@@ -19,4 +19,14 @@ UC2: Inserimento di un operatore da parte dell'amministratore
     4. L'amministratore inserisce i dati e clicca il bottone "conferma"
     5. Il sistema verifica i dati e li memorizza nel database
     6. Il sistema mostra i dettagli dell'operatore inserito
+
+UC3: Inserimento di un cane addestrato da operatore da parte dell'amministratore
+
+    1. L'amministratore accede all'interfaccia di amministrazione
+    2. L'amministratore seleziona l'opzione per l'inserimento di un nuovo cane addestrato
+    3. Il sistema mostra l'elenco di dati da inserire (nome, razza, curriculum, immagine, 
+        percorso da associare)
+    4. L'amministratore inserisce i dati e clicca il bottone "conferma"
+    
+    
 
