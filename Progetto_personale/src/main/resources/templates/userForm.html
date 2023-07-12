@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html :: headerfiles(title='Associazione Pet-therapy: Elenco User')">
+</head>
+
+<body class = "body_home">
+<header class="navbar_index">
+	<h1>Associazione Pet therapy</h1>
+</header>
+<form th:action = "@{/user}" method = "post" >
+
+	
+	<h6 th:text="${loggedCredential.user.nome}"></h6> 
+	<h6 th:text="${loggedCredential.user.cognome}"></h6> 
+	<h6 th:text="${loggedCredential.user.email}"></h6> 
+
+		
+	<br>
+	<br>
+	
+	
+	<span>Quale percorso vuole intraprendere? </span>
+	<br>
+	<span th:each="data : ${elencoPercorsi}">
+	<input type="radio" th:value="${data.id}" name="percorsoid"/>
+	<label th:text="${data.nome}"></label>
+	</span> 
+	
+	<br>
+	<br>
+	
+	
+	<button class="btn btn-warning my-2 my-sm-0" type="submit"> Conferma </button> 
+	
+
+</form>	
+
+	<footer>
+		<a href="/default">
+			<button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Home</button>
+		</a>
+	</footer>
+
+</body>
+
+
+</html>

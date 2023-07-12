@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html :: headerfiles(title='Associazione Pet-therapy: Elenco Cani')">
+</head>
+
+<body class="body_home">
+
+	<header class="navbar_index">
+		<h1>Associazione Pet therapy</h1>
+	</header>
+
+	<!-------------ADMIN-------------->
+	<div th:if="${loggedCredential.role}=='ADMIN'">
+
+		<div>
+			<h4>Elenco cani:</h4>
+
+			<div class="containitor">
+				<div class="card-deck" th:each="cane : ${elencoCani}">
+					<div class="card">
+						<img class="card-img-top" th:src="@{${cane.photosImagePath}}"
+							width="500" height="500" alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title" th:text="${cane.nome}">NOME</h5>
+							<p class="card-text" th:text="${cane.curriculum}">VITA DEL
+								CANE</p>
+							<a th:href="@{'/admin/toDeleteCane' + '/' + ${cane.id}}">
+								<button class="btn btn-warning my-2 my-sm-0" type="submit">Cancella</button>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+
+	<!-------------UTENTE-------------->
+	<div th:unless="${loggedCredential.role}=='ADMIN'">
+
+
+<div>
+			<h4>Elenco cani:</h4>
+
+			<div class="containitor">
+				<div class="card-deck" th:each="cane : ${elencoCani}">
+					<div class="card">
+						<img class="card-img-top" th:src="@{${cane.photosImagePath}}"
+							width="500" height="500" alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title" th:text="${cane.nome}">NOME</h5>
+							<p class="card-text" th:text="${cane.curriculum}">VITA DEL
+								CANE</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer>
+		<a href="/default">
+			<button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Home</button>
+		</a>
+	</footer>
+
+</body>
+</html>

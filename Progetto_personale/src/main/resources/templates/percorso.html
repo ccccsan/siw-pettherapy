@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title> Dettagli Percorso </title>
+</head>
+
+<body>
+	<div>
+		<h4> Dettagli Percorso </h4>
+		<div>
+		
+
+			<span th:text = "'Nome: ' + ${percorso.nome}"> NOME </span>
+			<br>
+			<span th:text = "'Descrizione: ' + ${percorso.descrizione}"> DESCRIZIONE </span>
+			
+			<br>
+			<br>
+			
+			
+		</div>
+	</div>
+	<footer><a href="/default"> Home </a></footer>
+</body>
+</html>

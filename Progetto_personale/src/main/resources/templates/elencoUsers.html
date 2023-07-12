@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html :: headerfiles(title='Associazione Pet-therapy: Elenco Users')">
+</head>
+
+<body class = "body_home">
+<header class="navbar_index">
+	<h1>Associazione Pet therapy</h1>
+</header>
+	<div>
+		<h4>Elenco users:</h4>
+
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">NOME</th>
+					<th scope="col">COGNOME</th>
+					<th scope="col">EMAIL</th>
+					<th scope="col">PERCORSO</th>
+				</tr>
+			</thead>
+			<tbody th:each="user : ${elencoUsers}">
+				<tr>
+					<th th:text="${user.id}" scope="row">#</th>
+					<td th:text="${user.nome}">NOME</td>
+					<td th:text="${user.cognome}">COGNOME</td>
+					<td th:text="${user.email}">EMAIL</td>
+					<td><span th:if = "${user.percorso != null}" th:text="${user.percorso}">PERCORSO</span>
+					<span th:unless = "${user.percorso != null}">Non ha scelto un percorso</span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<footer>
+		<a href="/default">
+	 	<button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Home</button>
+	 	</a>
+	</footer>
+</body>
+</html>

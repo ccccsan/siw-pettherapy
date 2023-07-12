@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/base.html :: headerfiles(title='Associazione Pet-therapy: benvenuti!')">
+</head>
+
+
+<!-- 	<header th:replace="fragments/base.html :: intestazione"></header>
+<!--  	
+    <div class = "titolo_index_login">
+        <h1>Associazione Pet-therapy</h1>
+    </div>
+-->
+<body class = "body_index">
+<header class="header_index">
+	<h1>Associazione Pet therapy</h1>
+</header>
+
+
+    <div>
+        <div id = "container_index">
+			<a th:href="@{/register}">
+			<button type = "button" class = "btn btn-warning index">Registrati</button>
+			</a>
+			
+			<a th:href="@{/login}">
+			<button type = "button" class = "btn btn-warning index">Accedi</button>
+			</a>
+   		</div>
+    </div>
+<!--      <footer class = "footer_">
+    	<a href="/">Home</a>
+    </footer> -->
+    <footer th:replace="fragments/base.html :: fondo(home='/')"></footer>
+</body>
+</html>

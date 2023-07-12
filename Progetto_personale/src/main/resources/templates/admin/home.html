@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html :: headerfiles(title='Associazione Pet-therapy: Home')">
+</head>
+
+<body class="body_home">
+
+	<header class="navbar_index">
+		<h1>Associazione Pet therapy</h1>
+	</header>
+
+
+	<!-------------ADMIN--------------
+	<div th:if="${loggedCredential.role}=='ADMIN'">
+-->
+
+
+		<!--    	<h6>Menu Amministratore</h6> -->
+
+<div>
+
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<span class="navbar-brand">Menu Amministratore</span>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/percorsoForm}">Inserisci Percorso <span
+							class="sr-only">(current)</span></a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/elencoPercorsi}">Visualizza i percorsi</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/operatoreForm}">Inserisci Operatore <span
+							class="sr-only">(current)</span></a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/elencoOperatori}">Visualizza gli Operatori</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/elencoCani}">Visualizza tutti i cani <span
+							class="sr-only">(current)</span></a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/elencoUsers}">Visualizza gli Users</a></li>
+				</ul>
+
+				<a th:href="@{/areaRiservata}">
+					<button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Area
+						Personale</button>
+				</a>
+			</div>
+		</nav>
+
+		<div class="scritte_home">
+			<h2>Cos'è la Pet Therapy?</h2>
+			<br>
+			<p>La pet therapy è la terapia dell'animale da affezione,
+				dall'unione dei due termini: pet, che significa animale domestico, e
+				therapy, che significa terapia. Detta anche zooterapia, è una
+				co-terapia che si affianca alle terapie tradizionali, ai trattamenti
+				e agli interventi socio-sanitari già in corso. Essa non rappresenta
+				una terapia a sé, ma si identifica come un intervento sussidiario
+				che aiuta, rinforza, arricchisce e coadiuva le cure tradizionali e
+				può essere impiegata su pazienti di qualsiasi età e affetti da
+				diverse patologie con l'obiettivo di miglioramento della qualità di
+				vita dell'individuo e del proprio stato di salute, rivalutando, nel
+				contempo, il rapporto uomo-animale. Ulteriore scopo di queste
+				co-terapie è quello di integrarsi con le normali attività
+				terapeutiche facilitando l'approccio delle varie figure
+				medico-sanitarie e riabilitative, soprattutto nel caso in cui il
+				paziente non dimostri collaborazione spontanea. La presenza di un
+				animale permette in molti casi di consolidare il rapporto emotivo
+				con il paziente, favorendo il canale di comunicazione
+				paziente-animale-medico e stimolando una partecipazione attiva del
+				soggetto stesso. La pet therapy viene intesa come un intervento
+				dolce che stabilisce armonia tra uomo e natura apportando grandi
+				benefici all'uomo. Spesso viene definita come un complessivo
+				progetto di Interventi Assistiti con gli Animali (IAA).</p>
+		</div>
+
+	</div>
+
+
+
+	<!-------------UTENTE-------------
+	<div th:unless="${loggedCredential.role}=='ADMIN'">
+
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<span class="navbar-brand">Menu Utente</span>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/elencoPercorsi}">Visualizza i percorsi</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/elencoOperatori}">Visualizza gli Operatori</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/elencoCani}">Visualizza tutti i cani <span
+							class="sr-only">(current)</span></a></li>
+				</ul>
+
+				<a th:href="@{/areaRiservata}">
+					<button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Area
+						Personale</button>
+				</a>
+			</div>
+		</nav>
+
+		<div class="scritte_home">
+			<h2>Cos'è la Pet Therapy?</h2>
+			<br>
+			<p>La pet therapy è la terapia dell'animale da affezione,
+				dall'unione dei due termini: pet, che significa animale domestico, e
+				therapy, che significa terapia. Detta anche zooterapia, è una
+				co-terapia che si affianca alle terapie tradizionali, ai trattamenti
+				e agli interventi socio-sanitari già in corso. Essa non rappresenta
+				una terapia a sé, ma si identifica come un intervento sussidiario
+				che aiuta, rinforza, arricchisce e coadiuva le cure tradizionali e
+				può essere impiegata su pazienti di qualsiasi età e affetti da
+				diverse patologie con l'obiettivo di miglioramento della qualità di
+				vita dell'individuo e del proprio stato di salute, rivalutando, nel
+				contempo, il rapporto uomo-animale. Ulteriore scopo di queste
+				co-terapie è quello di integrarsi con le normali attività
+				terapeutiche facilitando l'approccio delle varie figure
+				medico-sanitarie e riabilitative, soprattutto nel caso in cui il
+				paziente non dimostri collaborazione spontanea. La presenza di un
+				animale permette in molti casi di consolidare il rapporto emotivo
+				con il paziente, favorendo il canale di comunicazione
+				paziente-animale-medico e stimolando una partecipazione attiva del
+				soggetto stesso. La pet therapy viene intesa come un intervento
+				dolce che stabilisce armonia tra uomo e natura apportando grandi
+				benefici all'uomo. Spesso viene definita come un complessivo
+				progetto di Interventi Assistiti con gli Animali (IAA).</p>
+		</div>
+
+
+	</div>
+-->
+	<footer>
+		<a th:href="@{/logout}">
+			<button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Logout</button>
+		</a>
+	</footer>
+
+
+</body>
+</html>

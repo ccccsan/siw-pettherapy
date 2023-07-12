@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html :: headerfiles(title='Associazione Pet-therapy: Area Personale')">
+</head>
+
+<body class="body_home">
+	<header class="navbar_index">
+	<h1>Associazione Pet therapy</h1>
+</header>
+	<div>
+		<h2 id = "h2">Area Personale</h2>
+
+		<div class="container">
+			<div class="column">
+				<div class="col">
+				<b><span>NOME: </span></b>
+				<span th:text="${loggedCredential.user.nome}"></span></div>
+				<hr class = "hr">
+				<div class="col">
+				<b><span>COGNOME: </span></b>
+				<span th:text="${loggedCredential.user.cognome}"></span></div>
+				<hr class = "hr">
+				<div class="col">
+				<b><span>EMAIL: </span></b>
+				<span th:text="${loggedCredential.user.email}"></span></div>
+				<hr class = "hr">
+				<div class="col" th:if="${loggedCredential.user.percorso != null }">
+				<b><span>PRENOTAZIONE PER IL PERCORSO: </span></b>
+				<span th:text="${loggedCredential.user.percorso.nome}">
+				</span> </div>
+			<div class = "col" th:unless="${loggedCredential.user.percorso != null }">
+				Percorso non selezionato. <br> <a th:href="@{/userForm}">
+					Compila Form </a>
+			</div>
+			</div>
+		</div>
+
+	</div>
+	<footer>
+		<a href="/default">
+			<button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Home</button>
+		</a>
+	</footer>
+</body>
+</html>
