@@ -52,7 +52,7 @@
 
 
 	<!-------------UTENTE-------------->
-	<div th:unless="${loggedCredential.role}=='ADMIN'">
+	<div th:if="${loggedCredential.role}=='DEFAULT'">
 
 		<div>
 			<h4>Elenco operatori:</h4>

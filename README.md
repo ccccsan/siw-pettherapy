@@ -46,6 +46,23 @@ UC5: Cancellazione di un cane da parte dell'amministratore
     2. L'amministratore seleziona l'opzione per la cancellazione di un cane
     3. Il sistema mostra l'elenco dei cani
     4. L'amministratore seleziona il cane da cancellare e clicca il bottone "conferma"
+    5. Il sistema verifica e cancella il cane dal database
+
+UC6: Visualizzazione dei dettagli di un percorso da parte dell'utente
+    
+    1. L'utente accede all'interfaccia utente
+    2. L'utente seleziona l'opzione per la visualizzazione dei dettagli di un percorso
+    3. Il sistema mostra l'elenco dei percorsi
+
+UC7: Prenotazione di un percorso da parte dell'utente registrato
+
+    1. L'utente accede all'interfaccia utente
+    2. L'utente seleziona il bottone "Area Personale" per visualizzare i propri dati
+    3. L'utente seleziona l'opzione per la prenotazione di un percorso
+    4. Il sistema mostra il form per la prenotazione di un percorso
+    5. L'utente sceglie il percorso che vuole intraprendere e clicca il bottone "conferma"
+    6. Il sistema verifica i dati e li memorizza nel database
+    7. Il sistema mostra la pagina di conferma della prenotazione
     
     
 
