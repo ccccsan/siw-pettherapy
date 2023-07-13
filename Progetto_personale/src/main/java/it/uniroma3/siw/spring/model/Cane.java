@@ -26,7 +26,7 @@ public class Cane {
 	@NotBlank
 	private String curriculum;
 	
-	@Column(nullable = true, length = 64)
+	@Column(nullable = true, length = 1000000)
 	private String photos;
 	
 	
@@ -64,7 +64,7 @@ public class Cane {
 	//IMMAGINI
 	@Transient
     public String getPhotosImagePath() {
-        if (this.getPhotos() == null || this.getId() == null) return null;
+        if (photos == null || id == null) return null;
          
         return "/cane-photos/" + id + "/" + photos;
     }

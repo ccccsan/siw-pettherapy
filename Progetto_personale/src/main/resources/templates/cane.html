@@ -25,7 +25,7 @@
 			
 			
 			<span>Foto: </span>
-			<img th:src="@{${cane.photosImagePath}}" width="180" height="180" />
+			<img th:src="@{'data:image;base64,' + ${cane.photos}}" width="90" height="90" />
 			
 			<br>
 			<br>

@@ -1,6 +1,7 @@
 package it.uniroma3.siw.spring.controller;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -62,14 +63,16 @@ public class CaneController {
 
 		if(!bindingResult.hasErrors()) {
 
+
+
+//			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+//			cane.setPhotos(fileName);
+//			Cane salvaCane = this.caneService.inserisci(cane);
+//			String uploadDir = "cane-photos/" + salvaCane.getId();
+//			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+			String base64Image = Base64.getEncoder().encodeToString(multipartFile.getBytes());;
+			cane.setPhotos(base64Image);
 			caneService.save(cane);
-
-			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-			cane.setPhotos(fileName);
-			Cane salvaCane = this.caneService.inserisci(cane);
-			String uploadDir = "cane-photos/" + salvaCane.getId();
-			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-
 			model.addAttribute("cane", cane);
 			model.addAttribute("elencoCani", caneService.getAllCani());
 			model.addAttribute("elencoPercorsi", percorsoService.findAll());
