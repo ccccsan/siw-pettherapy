@@ -26,7 +26,7 @@ public class Cane {
     @NotBlank
     private String curriculum;
 
-    @Column(nullable = true, length = 1000000)
+    @Column(nullable = true, length = 10000000)
     private String photos;
 
 

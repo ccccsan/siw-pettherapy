@@ -25,30 +25,29 @@ import it.uniroma3.siw.spring.service.CaneService;
 import it.uniroma3.siw.spring.service.OperatoreService;
 import it.uniroma3.siw.spring.service.PercorsoService;
 import it.uniroma3.siw.spring.session.SessionDataUser;
-import it.uniroma3.siw.spring.upload.FileUploadUtil;
 
 
 @Controller
 public class CaneController {
 
-	@Autowired 
+	@Autowired
 	private CaneService caneService;
 
-	@Autowired 
+	@Autowired
 	private CaneValidator caneValidator;
 
-	@Autowired 
+	@Autowired
 	private OperatoreService operatoreService;
-	
+
 	@Autowired
 	private PercorsoService percorsoService;
 
 	@Autowired
 	private SessionDataUser sessionDataUser;
-	
-	
+
+
 	@PostMapping("/cane")
-	public String addCane(@RequestParam("idOperatore") String idOperatore, @Valid @ModelAttribute ("cane") Cane cane, 
+	public String addCane(@RequestParam("idOperatore") String idOperatore, @Valid @ModelAttribute ("cane") Cane cane,
 			@RequestParam("image") MultipartFile multipartFile, BindingResult bindingResult, Model model) throws IOException {
 
 		/*
@@ -58,18 +57,10 @@ public class CaneController {
 		Operatore operatore = operatoreService.findById(id);
 		cane.setOperatore(operatore);
 
-		
+
 		caneValidator.validate(cane, bindingResult);
 
 		if(!bindingResult.hasErrors()) {
-
-
-
-//			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-//			cane.setPhotos(fileName);
-//			Cane salvaCane = this.caneService.inserisci(cane);
-//			String uploadDir = "cane-photos/" + salvaCane.getId();
-//			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 			String base64Image = Base64.getEncoder().encodeToString(multipartFile.getBytes());;
 			cane.setPhotos(base64Image);
 			caneService.save(cane);
@@ -80,7 +71,7 @@ public class CaneController {
 
 
 			return "elencoCani.html";
-			
+
 		}
 		//se qualcosa è andato storto, torno alla form
 		return "caneForm.html";
@@ -88,11 +79,11 @@ public class CaneController {
 	}
 
 
-	@GetMapping ("/cane/{id}") 
+	@GetMapping ("/cane/{id}")
 	public String getCane(@PathVariable("id") Long id, Model model) {
 		Cane cane = caneService.findById(id);
 		model.addAttribute("cane", cane);
-		
+
 		model.addAttribute("percorso", cane.getPercorso());
 
 		return "cane.html";
@@ -100,7 +91,7 @@ public class CaneController {
 
 
 	//elenco dei cani senza id operatore
-	@GetMapping("/elencoCani") 
+	@GetMapping("/elencoCani")
 	public String getElencoCani(Model model) {
 		List<Cane> elencoCani = caneService.getAllCani();
 		model.addAttribute("elencoCani", elencoCani);
@@ -112,9 +103,9 @@ public class CaneController {
 
 
 	//elenco dei cani con id operatore
-	@GetMapping("/operatore/{id}/elencoCani") 
+	@GetMapping("/operatore/{id}/elencoCani")
 	public String getElencoCaniId(@PathVariable("id") Long id, Model model) {
-		Operatore operatore = operatoreService.findById(id);		
+		Operatore operatore = operatoreService.findById(id);
 		List<Cane> elencoCani = caneService.getByOperatore(operatore);
 		model.addAttribute("elencoCani", elencoCani);
 		model.addAttribute("loggedCredential", sessionDataUser.getLoggedCredentials());
@@ -125,7 +116,7 @@ public class CaneController {
 
 
 	//collego il cane al suo operatore tramite l'id di quest'ultimo
-	@GetMapping("/admin/operatore/{id}/caneForm") 
+	@GetMapping("/admin/operatore/{id}/caneForm")
 	public String creaCane(@PathVariable("id") Long id, Model model) {
 
 		Operatore operatore = operatoreService.findById(id);
@@ -139,21 +130,21 @@ public class CaneController {
 
 		return "caneForm.html";
 	}
-	
-	
-	
+
+
+
 	@PostMapping("/admin/operatore/{id}/caneForm")
 	public String save(Cane cane) {
 		caneService.save(cane);
-		
+
 		return "redirect:/admin/operatore/{id}/caneForm";
 	}
-	
-	
+
+
 
 
 	//mi chiede la conferma per cancellare un cane
-	@GetMapping("/admin/toDeleteCane/{id}") 
+	@GetMapping("/admin/toDeleteCane/{id}")
 	public String toDeleteCane(@PathVariable("id") Long id, Model model) {
 
 		model.addAttribute("cane", caneService.findById(id));
@@ -173,10 +164,10 @@ public class CaneController {
 
 		return "elencoCani.html";
 	}
-	
-	
 
-	
+
+
+
 }
 
 
