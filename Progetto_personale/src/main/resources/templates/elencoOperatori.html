@@ -18,30 +18,30 @@
 
 			<table class="table">
 				<thead class="thead-dark">
-					<tr>
-						<th scope="col">NOME</th>
-						<th scope="col">COGNOME</th>
-						<th scope="col">SPECIALIZZAZIONE</th>
-						<th scope="col">CANCELLAZIONE</th>
-						<th scope="col">INSERIMENTO</th>
-						<th scope="col">VISUALIZZAZIONE</th>
-					</tr>
+				<tr>
+					<th scope="col">NOME</th>
+					<th scope="col">COGNOME</th>
+					<th scope="col">SPECIALIZZAZIONE</th>
+					<th scope="col">CANCELLAZIONE</th>
+					<th scope="col">INSERIMENTO</th>
+					<th scope="col">VISUALIZZAZIONE</th>
+				</tr>
 				</thead>
 				<tbody th:each="operatore : ${elencoOperatori}">
-					<tr>
-						<th th:text="${operatore.nome}" scope="row">NOME</th>
-						<td th:text="${operatore.cognome}">COGNOME</td>
-						<td th:text="${operatore.specializzazione}">SPECIALIZZAZIONE</td>
-						<th><a href="operatore.html"
-							th:href="@{'/admin/toDeleteOperatore' + '/' + ${operatore.id}}"
-							th:text="Cancella">cancella</a></th>
-						<th><a
+				<tr>
+					<th th:text="${operatore.nome}" scope="row">NOME</th>
+					<td th:text="${operatore.cognome}">COGNOME</td>
+					<td th:text="${operatore.specializzazione}">SPECIALIZZAZIONE</td>
+					<th><a href="operatore.html"
+						   th:href="@{'/admin/toDeleteOperatore' + '/' + ${operatore.id}}"
+						   th:text="Cancella">cancella</a></th>
+					<th><a
 							th:href="@{'/admin/operatore' + '/' + ${operatore.id} + '/caneForm'}">Inserisci
-								Cane</a></th>
-						<th><a
+						Cane</a></th>
+					<th><a
 							th:href="@{'/operatore' + '/' + ${operatore.id} +'/elencoCani'}">Visualizza
-								Cani</a></th>
-					</tr>
+						Cani</a></th>
+				</tr>
 				</tbody>
 			</table>
 
@@ -49,7 +49,6 @@
 		</div>
 
 	</div>
-
 
 	<!-------------UTENTE-------------->
 	<div th:if="${loggedCredential.role}=='DEFAULT'">

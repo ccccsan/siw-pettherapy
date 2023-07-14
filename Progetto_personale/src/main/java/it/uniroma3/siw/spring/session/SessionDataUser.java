@@ -12,45 +12,37 @@ import it.uniroma3.siw.spring.model.User;
 import it.uniroma3.siw.spring.repository.CredentialsRepository;
 
 @Component
-@Scope(value="session", proxyMode=ScopedProxyMode.TARGET_CLASS)
+@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class SessionDataUser {
 
 
-	    private User user;
+    private User user;
 
-	    private Credentials credentials;
+    private Credentials credentials;
 
-	    
-	    
-	    
-	    @Autowired 
-	    private CredentialsRepository credentialsRepository;
 
-	    public Credentials getLoggedCredentials() {
-	        if(this.credentials == null) {
-	            this.update();
-	        }
-	        return this.credentials;
-	    }
-	    
-	    
+    @Autowired
+    private CredentialsRepository credentialsRepository;
 
-	    public User getLoggedUser() {
-	        if(this.user == null) {
-	            this.update();
-	        }
-	        return this.user;
-	    }
-	    
-	    
+    public Credentials getLoggedCredentials() {
+        this.update();
+        return this.credentials;
+    }
 
-	    private void update() {
-	        Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-	        UserDetails loggedUserDetails = (UserDetails) obj;
 
-	        this.credentials = this.credentialsRepository.findByUsername(loggedUserDetails.getUsername()).get();
-	        this.user = this.credentials.getUser();
-	    }
+    public User getLoggedUser() {
+        this.update();
+        return this.user;
+    }
 
-	}
+
+    private void update() {
+        Object object = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDetails loggedUserDetails = (UserDetails) object;
+
+        this.credentials = this.credentialsRepository.findByUsername(loggedUserDetails.getUsername()).get();
+        this.user = this.credentials.getUser();
+    }
+
+}
 

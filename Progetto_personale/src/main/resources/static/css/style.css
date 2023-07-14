@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Ysabeau+Office:ital,wght@1,600&display=swap');
+
 header {
 	text-align: center;
     margin-top: 5px;
@@ -127,7 +129,7 @@ footer > a {
 	background-image:url(/images/dogiswatchingyou.jpeg);
 	background-blend-mode: multiply;
 	background-size: cover;
-	background-color: rgba(255, 239, 239, 0.6); /* Trasparenza di sfondo */
+	background-color: rgba(0, 0, 0, 0.2); /* Trasparenza di sfondo */
 }
 
 .scritte_home {
@@ -147,7 +149,12 @@ footer > a {
 	justify-content:center;
 }
 
+h1, h2, h4 {
+	font-family: Ysabeau Office, sans-serif;
+}
+
 #h2 {
+	font-family: Ysabeau Office, sans-serif;
 	font-size:80px;
 	text-align: center;
 	color: #ff504b;
@@ -163,6 +170,10 @@ footer > a {
 
 .risposta p {
 	color: black;
+}
+
+span {
+	color: #ffffff;
 }
 
 /*********************/

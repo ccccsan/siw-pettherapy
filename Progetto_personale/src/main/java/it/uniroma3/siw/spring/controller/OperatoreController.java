@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import it.uniroma3.siw.spring.model.Credentials;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,10 +39,11 @@ public class OperatoreController {
 
 		if (!bindingResult.hasErrors()) {
 			operatoreService.save(operatore);
+			Credentials credentials = sessionDataUser.getLoggedCredentials();
 			model.addAttribute("operatore", operatore);
 			model.addAttribute("elencoOperatore", operatoreService.findAll());
 
-			model.addAttribute("loggedCredential", sessionDataUser.getLoggedCredentials());
+			model.addAttribute("loggedCredential", credentials);
 
 			return "operatore.html";
 		}
@@ -71,15 +73,16 @@ public class OperatoreController {
 	public String getElencoOperatori(Model model) {
 
 		List<Operatore> elencoOperatori = operatoreService.findAll();
+		Credentials credentials = sessionDataUser.getLoggedCredentials();
 		model.addAttribute("elencoOperatori", elencoOperatori);
-		model.addAttribute("loggedCredential", sessionDataUser.getLoggedCredentials());
+		model.addAttribute("loggedCredential", credentials);
 
 		return "elencoOperatori.html";
 	}
 
 	// se clicco su cancella mi porta alla pagina di conferma
 	@GetMapping("/admin/toDeleteOperatore/{id}")
-	public String toDeleteChef(@PathVariable("id") Long id, Model model) {
+	public String toDeleteOperatore(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("operatore", operatoreService.findById(id));
 
 		return "toDeleteOperatore.html";
@@ -89,8 +92,9 @@ public class OperatoreController {
 	@GetMapping("/admin/deleteOperatore/{id}")
 	public String deleteOPeratore(@PathVariable("id") Long id, Model model) {
 		operatoreService.deleteById(id);
+		Credentials credentials = sessionDataUser.getLoggedCredentials();
 		model.addAttribute("elencoBuffet", operatoreService.findAll());
-		model.addAttribute("loggedCredential", sessionDataUser.getLoggedCredentials());
+		model.addAttribute("loggedCredential", credentials);
 
 		return "redirect:/elencoOperatori";
 	}

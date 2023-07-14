@@ -4,7 +4,10 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import it.uniroma3.siw.spring.model.Credentials;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,10 +41,11 @@ public class PercorsoController {
 
 		if (!bindingResult.hasErrors()) {
 
+			Credentials credentials = sessionDataUser.getLoggedCredentials();
 			percorsoService.save(percorso);
 			model.addAttribute("percorso", percorso);
 			model.addAttribute("elencoPercorsi", percorsoService.findAll());
-			model.addAttribute("loggedCredential", sessionDataUser.getLoggedCredentials());
+			model.addAttribute("loggedCredential", credentials);
 
 			return "elencoPercorsi.html";
 		}
@@ -67,29 +71,35 @@ public class PercorsoController {
 
 	@GetMapping("/elencoPercorsi")
 	public String getElencoPercorsi(Model model) {
-
 		List<Percorso> elencoPercorsi = percorsoService.findAll();
+
+		Credentials credentials = sessionDataUser.getLoggedCredentials();
+
 		model.addAttribute("elencoPercorsi", elencoPercorsi);
-		model.addAttribute("loggedCredential", sessionDataUser.getLoggedCredentials());
+		model.addAttribute("loggedCredential", credentials);
 
 		return "elencoPercorsi.html";
 	}
 
 	// se clicco su modifica mi porta alla pagina di modificare
-	@GetMapping("/admin/toDeletePercorso/{id}")
+	@GetMapping("/admin/toUpdatePercorso/{id}")
 	public String toDeletePercorso(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("percorso", percorsoService.findPercorsoById(id));
-		return "toDeletePercorso.html";
+		return "toUpdatePercorso.html";
 	}
 
-	// confermo la cancellazione
-	@GetMapping("/admin/deletePercorso/{id}")
-	public String deletePercorso(@PathVariable("id") Long id, Model model) {
+	// modifica del percorso
+	@PostMapping("/admin/updatePercorso/{id}")
+	public String updatePercorso(@ModelAttribute("percorso") Percorso newPercorso, @PathVariable("id") Long id, Model model) {
 //		percorsoService.deletePercorso(id);
+		Percorso oldPercorso = this.percorsoService.findPercorsoById(id);
+		Percorso percorso = this.percorsoService.updatePercorso(oldPercorso, newPercorso);
+		Credentials credentials = sessionDataUser.getLoggedCredentials();
+		this.percorsoService.save(percorso);
 		model.addAttribute("elencoPercorsi", percorsoService.findAll());
-		model.addAttribute("loggedCredential", sessionDataUser.getLoggedCredentials());
+		model.addAttribute("loggedCredential", credentials);
 
-		return "redirect:/elencoPercorsi.html";
+		return "elencoPercorsi.html";
 	}
 
 }
