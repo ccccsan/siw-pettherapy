@@ -19,8 +19,10 @@
         <div class="containitor">
             <div class="card-deck" th:each="cane : ${elencoCani}">
                 <div class="card">
+                    <a th:href="@{'/cane' + '/' + ${cane.id}}">
                     <img class="card-img-top" th:src="@{'data:image;base64,' + ${cane.photos}}"
                          width="300" height="300" alt="Card image cap">
+                    </a>
                     <div class="card-body">
                         <h5 class="card-title" th:text="${cane.nome}">NOME</h5>
                         <p class="card-text" th:text="${cane.curriculum}">VITA DEL
@@ -45,12 +47,12 @@
         <div class="containitor">
             <div class="card-deck" th:each="cane : ${elencoCani}">
                 <div class="card">
+                    <a th:href="@{'/cane' + '/' + ${cane.id}}">
                     <img class="card-img-top" th:src="@{'data:image;base64,' + ${cane.photos}}"
                          width="300" height="300" alt="Card image cap">
+                    </a>
                     <div class="card-body">
                         <h5 class="card-title" th:text="${cane.nome}">NOME</h5>
-                        <p class="card-text" th:text="${cane.curriculum}">VITA DEL
-                            CANE</p>
                     </div>
                 </div>
             </div>

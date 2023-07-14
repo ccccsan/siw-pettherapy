@@ -78,6 +78,7 @@ footer > a {
 
 .body_index {
 	background-image:url(/images/backgroundmain.jpeg);
+	background-blend-mode: multiply;
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -124,7 +125,9 @@ footer > a {
 
 .body_home {
 	background-image:url(/images/dogiswatchingyou.jpeg);
+	background-blend-mode: multiply;
 	background-size: cover;
+	background-color: rgba(255, 239, 239, 0.6); /* Trasparenza di sfondo */
 }
 
 .scritte_home {
