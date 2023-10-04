@@ -28,7 +28,10 @@
 				<div class="col" th:if="${loggedCredential.user.percorso != null }">
 				<b><span>PRENOTAZIONE PER IL PERCORSO: </span></b>
 				<span th:text="${loggedCredential.user.percorso.nome}">
-				</span> </div>
+				</span>
+					<a th:href="@{/toDeletePercorso}">Cancella Percorso</a>
+				</div>
+
 			<div class = "col" th:if="${loggedCredential.user.percorso == null }">
 				Percorso non selezionato. <br> <a th:href="@{/userForm}">
 					Compila Form </a>

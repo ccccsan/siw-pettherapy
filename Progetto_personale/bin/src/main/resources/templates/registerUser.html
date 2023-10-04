@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='Associazione Pet-therapy: Registrazione')">
+</head>
+<body class = "body_registerUser">
+	
+<header class="navbar_index">
+	<h1>Associazione Pet therapy</h1>
+</header>
+
+<form class="container_form" th:action="@{/register}" method="POST">
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Username</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputEmail3" placeholder="Username" required
+                       th:field="${credentials.username}"/>
+                <span th:if="${#fields.hasErrors('credentials.username')}"
+                th:errors="${credentials.username}" th:style="'color:red'"></span>
+    </div>
+  </div>
+    <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="inputPassword3" placeholder="Password" required
+                       th:field="${credentials.password}"/>
+                <span th:if="${#fields.hasErrors('credentials.password')}"
+                th:errors="${credentials.password}" th:style="'color:red'"></span>
+    </div>
+  </div>
+   <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Nome</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputEmail3" placeholder="Nome" required
+                       th:field="${user.nome}"/>
+                <span th:if="${#fields.hasErrors('user.nome')}"
+                th:errors="${user.nome}" th:style="'color:red'"></span>
+    </div>
+  </div>
+   <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Cognome</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputEmail3" placeholder="Cognome" required
+                       th:field="${user.cognome}"/>
+                <span th:if="${#fields.hasErrors('user.cognome')}"
+                th:errors="${user.cognome}" th:style="'color:red'"></span>
+    </div>
+  </div>
+
+ 
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="inputEmail3" placeholder="Email" required
+                       th:field="${user.email}"/>
+                <span th:if="${#fields.hasErrors('user.email')}"
+                th:errors="${user.email}" th:style="'color:red'"></span>
+    </div>
+  </div>
+
+  <div class="form-group row_button">
+      <button type="submit" class="btn btn-warning">Registra</button>
+    </div>
+</form>    
+    
+    <footer th:replace="fragments/base.html :: fondo(home='/')"></footer>
+</body>
+</html>

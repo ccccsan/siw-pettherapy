@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+        th:replace="fragments/base.html :: headerfiles(title='Associazione Pet-therapy: Elenco Percorsi')">
+</head>
+
+<body class="body_home">
+
+<header class="navbar_index">
+    <h1>Associazione Pet therapy</h1>
+</header>
+
+<!-------------ADMIN-------------->
+<div th:if="${loggedCredential.role}=='ADMIN'">
+
+    <h4>Elenco percorsi:</h4>
+
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <!--					<th scope="col">ID</th>-->
+            <th scope="col">NOME</th>
+            <th scope="col">DESCRIZIONE</th>
+            <th scope="col">MODIFICA DATI</th>
+        </tr>
+        </thead>
+        <tbody th:each="percorso : ${elencoPercorsi}">
+        <tr>
+            <!--					<th th:text="${percorso.id}" scope="row">#</th>-->
+            <th th:text="${percorso.nome}" scope="row">NOME</th>
+            <td th:text="${percorso.descrizione}">DESCRIZIONE</td>
+            <th><a href="percorso.html"
+                   th:href="@{'/admin/toUpdatePercorso' + '/' + ${percorso.id}}"
+                   th:text="Modifica">modifica</a></th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-------------UTENTE-------------->
+<div th:if="${loggedCredential.role}=='DEFAULT'">
+
+<div>
+    <h4>Elenco percorsi:</h4>
+
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <!--					<th scope="col">ID</th>-->
+            <th scope="col">NOME</th>
+            <th scope="col">DESCRIZIONE</th>
+        </tr>
+        </thead>
+        <tbody th:each="percorso : ${elencoPercorsi}">
+        <tr>
+            <th th:text="${percorso.nome}" scope="row">NOME</th>
+            <td th:text="${percorso.descrizione}">DESCRIZIONE</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+
+
+<footer>
+    <a href="/default">
+        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Home</button>
+    </a>
+</footer>
+
+</body>
+</html>

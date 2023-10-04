@@ -60,6 +60,15 @@ public class UserController {
 		
 		return "user.html";
     }
+
+	@GetMapping("/toDeletePercorso")
+	public String deletePercorso(Model model) {
+		User user = sessionDataUser.getLoggedCredentials().getUser();
+		this.percorsoService.deletePercorso(user.getId());
+		model.addAttribute("loggedCredential", sessionDataUser.getLoggedCredentials());
+
+		return "user.html";
+	}
 	
 	
 	//prendo l'elenco degli user 

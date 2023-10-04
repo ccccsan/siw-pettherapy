@@ -22,7 +22,9 @@ public class PercorsoService {
 	
 	@Autowired
 	private CredentialsService credentialsService;
-	
+
+	@Autowired
+	private UserService userService;
 	
 	
 	@Transactional
@@ -60,6 +62,16 @@ public class PercorsoService {
 		oldPercorso.setDescrizione(newPercorso.getDescrizione());
 		return this.percorsoRepository.save(oldPercorso);
 	}
+
+	@Transactional
+	public void deletePercorso(Long id) {
+		User user = this.userService.getUser(id);
+		Percorso percorsoUser = user.getPercorso();
+		if (percorsoUser != null) {
+			user.setPercorso(null);
+		}
+	}
+
 //	@Transactional
 //	public void deletePercorso(Long id) {
 //		Percorso percorso = this.findPercorsoById(id);

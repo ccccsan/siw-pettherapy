@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+        th:replace="fragments/base.html :: headerfiles(title='Associazione Pet-therapy: Dettagli Cane')">
+    >
+</head>
+
+<body class="body_home">
+
+<header class="navbar_index">
+    <h1>Associazione Pet therapy</h1>
+</header>
+<div>
+    <h2 id="h2"> Dettagli Cane </h2>
+    <div class="container">
+        <div class="col">
+            <b><span>NOME: </span></b>
+            <span th:text="${cane.nome}"> NOME </span></div>
+        <hr class="hr">
+        <div class="col">
+            <b><span>RAZZA: </span></b>
+            <span th:text="${cane.razza}"> RAZZA </span></div>
+        <hr class="hr">
+        <div class="col">
+            <b><span>CURRICULUM: </span></b>
+            <span th:text="${cane.curriculum}"> CURRICULUM </span>
+        </div>
+        <hr class="hr">
+        <div class="col">
+            <b><span>FOTO: </span></b>
+            <img th:src="@{'data:image;base64,' + ${cane.photos}}"
+                 width="90" height="90"/>
+        </div>
+        <hr class="hr">
+        <div class="col">
+            <b><span>OPERATORE: </span></b>
+            <span th:text="${cane.operatore.nome + ' ' + cane.operatore.cognome}"> Operatore </span>
+        </div>
+        <hr class="hr">
+        <div class="col">
+            <b><span>CANE ADDESTRATO PER IL PERCORSO: </span></b>
+            <span th:text="${percorso.nome}"> PERCORSO </span>
+        </div>
+    </div>
+</div>
+</body>
+
+<footer>
+    <a href="/default">
+        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Home</button>
+    </a>
+</footer>
+</html>
